@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title_head %}<title>Bandas</title>{% endblock title_head %}
+{% block h1_header %}Bandas{% endblock h1_header %}
+{% comment %} {% block main %}<p class = "container"> Se Creo la Banda! {{Concierto.banda}}</p>{% endblock main %} {% endcomment %}
+
+{% block main %}
+
+<form action="">
+    <input type="text" name= 'banda' placeholder='Metallica, Heavy Metal ...' >
+    <input type="submit" value= 'Buscar'>
+</form>
+
+{% if listado_de_conciertos  %}
+<ul>
+    {% for Concierto in listado_de_conciertos  %}
+    <li>{{Concierto}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+{% endif %}
+<p>No se encontraron Bandas</p>
+{% endblock main %}

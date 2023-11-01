@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title_head %}<title>Crear Bandas</title>{% endblock title_head %}
+{% block h1_header %}Crear Bandas{% endblock h1_header %}
+{% block main %}
+{% comment %} <p class = "container">Se Creo la Banda! {{Concierto.banda}}</p> {% endcomment %}
+{% comment %} <form action="" method ="POST">
+    {% csrf_token %}
+    <p>Banda:
+        <input type="text" name="banda">
+    </p>
+    <p>Genero:
+        <input type="text" name="genero">
+    </p>
+    <p>Precio de la Entrada:
+        <input type="number" name="precioEntrada">
+    </p>
+    <input type="submit" value="Crear">
+    {% comment %} <button>Crear Concierto</button>
+</form> {% endcomment %}
+
+<form action="" method ="POST">
+    {% csrf_token %}
+    {{formulario}}
+    <input type="submit" value="Crear">
+    {% comment %} <button>Crear Concierto</button> {% endcomment %}
+</form>
+
+
+{% endblock main %}
