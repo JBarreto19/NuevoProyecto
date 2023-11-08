@@ -2,14 +2,12 @@ from django.shortcuts import render,redirect
 # from django.http import HttpResponse
 # from django.template import loader
 from inicio.models import Concierto
+from inicio.models import Venues
 from inicio.forms import CrearBandaFormulario
+from inicio.forms import CrearVenueFormulario
 
 def inicio(request):
-    # template = loader.get_template('inicio.html')
-    # template_renderizado = template.render ({})
-    # return HttpResponse (template_renderizado)
-
-#v3
+    
     return render (request,'inicio/inicio.html',{})
 
 def conciertos (request):
@@ -42,3 +40,23 @@ def crear_conciertos (request):
 
     formulario = CrearBandaFormulario ()
     return render(request,'inicio/crear_concierto.html',{'formulario': formulario}) 
+
+def crear_venue (request):
+    if request.method == 'POST':
+        formulario = CrearVenueFormulario (request.POST)
+        if formulario.is_valid():
+            info_limpia =formulario.cleaned_data
+
+            Nombre = info_limpia.get('Nombre')
+            Direccion = info_limpia.get('Direccion')
+            capacidad = info_limpia.get('capacidad')
+
+            venue = Venues(Nombre=Nombre.lower(), Direccion=Direccion, capacidad=capacidad)
+            venue.save()
+
+            return redirect('venue')
+        else:
+            return render(request,'inicio/venue.html',{'formulario': formulario}) 
+
+    formulario = CrearVenueFormulario ()
+    return render(request,'inicio/venue.html',{'formulario': formulario}) 
